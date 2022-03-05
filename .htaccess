@@ -1,0 +1,18 @@
+Options -Multiviews
+php_value date.timezone 'Asia/Jakarta'
+##Options -Indexes
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+##================================
+## Menjadikan url yang dikunjungi sebagai nilai 'addx' yang nantinya akan diGET 
+## dengan cara menulis ulang addx=$1
+## contoh, jika mengunjungi alamat http://belajar_mvc/x/y/z.php maka
+## Rewrite akan mengganti alamat dikunjungi menjad http://belajar_mvc/index.php?add=x/y/z.php
+## Nantinya, class Aplikasiku (lihat app.php yg ada di folder inti) 
+## akan memposisi x sbg class controller, y sbg method yg ada dalam class x, dan z.php sbg data yg
+## akan digunakan oleh method y
+
+RewriteRule ^(.*)$ index.php?addx=$1 [L]
